@@ -1,0 +1,14 @@
+{
+  "name": "-y",
+  "version": "1.0.0",
+  "description": "\"makes a json file from mapsets from first 1000 ids\"",
+  "main": "osu.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sickkmade",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
