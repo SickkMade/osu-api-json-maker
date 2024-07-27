@@ -10,6 +10,7 @@ async function getTopBeatmapset(access_token){
     let beatmapData = {};
     let cursorString = null;
     let page = 0;
+    let currentMapset = 0
 
     while (Object.keys(beatmapData).length < 1000) {
         try {
@@ -37,13 +38,14 @@ async function getTopBeatmapset(access_token){
             }
 
             data.beatmapsets.forEach(beatmapset => {
-                beatmapData[beatmapset.id] = {
+                beatmapData[currentMapset] = {
                     playcount: beatmapset.play_count,
                     cover: beatmapset.covers['cover@2x'],
                     title: beatmapset.title,
                     creator: beatmapset.creator,
                     audio: beatmapset.preview_url
                 };
+                currentMapset++
             });
 
             console.log(`On page ${++page}`);
