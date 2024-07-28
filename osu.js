@@ -36,6 +36,7 @@ async function getTopBeatmapset(access_token){
                 console.log('No more beatmapsets found.');
                 break;
             }
+            // console.log(data.beatmapsets['beatmaps']['url'])
 
             data.beatmapsets.forEach(beatmapset => {
                 beatmapData[currentMapset] = {
@@ -43,7 +44,8 @@ async function getTopBeatmapset(access_token){
                     cover: beatmapset.covers['cover@2x'],
                     title: beatmapset.title,
                     creator: beatmapset.creator,
-                    audio: beatmapset.preview_url
+                    audio: beatmapset.preview_url,
+                    maplink: beatmapset.beatmaps[0]['url']
                 };
                 currentMapset++
             });
@@ -73,6 +75,17 @@ async function getTopBeatmapset(access_token){
     }
 }
 
+// checkBeatmapSet()
 
 
 getTopBeatmapset(process.env.ACCESS_TOKEN)
+
+async function checkBeatmapSet(){
+    const request = await fetch('https://osu.ppy.sh/api/v2/beatmapsets/320118', {
+        headers: {
+            'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
+        }
+    })
+    const data = await request.json()
+    console.log(data)
+}
